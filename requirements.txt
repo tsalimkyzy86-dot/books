@@ -1,0 +1,2 @@
+# Backend runs on Python standard library (http.server, sqlite3, json).
+# No external dependencies required.
