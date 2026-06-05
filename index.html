@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bukinist.kzo | Букинистический магазин эстетики и разума</title>
+    <!-- Google Fonts: Lora for cozy headers & Nunito for soft body text -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Nunito:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Header / Navigation -->
+    <header class="main-header">
+        <div class="header-container">
+            <a href="#home" class="logo" id="logo-link">
+                <span class="logo-accent">bukinist</span>.kzo
+            </a>
+            
+            <nav class="nav-menu" id="nav-menu">
+                <a href="#home" class="nav-link active" data-target="home">Главная</a>
+                <a href="#catalog" class="nav-link" data-target="catalog">Каталог</a>
+                <a href="#about" class="nav-link" data-target="about">О нас</a>
+                <a href="#delivery" class="nav-link" data-target="delivery">Доставка</a>
+                <a href="#contacts" class="nav-link" data-target="contacts">Контакты</a>
+            </nav>
+
+            <div class="header-actions">
+                <a href="https://instagram.com/bukinist.kzo" target="_blank" class="social-icon-btn" aria-label="Instagram" id="header-instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <button class="cart-btn" id="cart-toggle-btn" aria-label="Корзина">
+                    <i class="fas fa-shopping-basket"></i>
+                    <span class="cart-badge" id="cart-badge-count">0</span>
+                </button>
+                <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="Меню">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="content-wrapper">
+
+        <!-- HOME SECTION -->
+        <section id="home" class="view-section active">
+            <!-- Hero Block -->
+            <div class="hero-block" style="background-image: linear-gradient(rgba(253, 251, 247, 0.75), rgba(253, 251, 247, 0.95)), url('assets/hero.png');">
+                <div class="hero-content">
+                    <div class="hero-tag">Книги с историей & атмосфера уюта</div>
+                    <h1>Букинистические книги для размышлений</h1>
+                    <p>Избранные б/у книги по политике, философии, искусству и саморазвитию. Уютный формат и вторая жизнь хорошей литературы.</p>
+                    <div class="hero-buttons">
+                        <a href="#catalog" class="btn btn-primary" onclick="navigateToSection('catalog')">Открыть каталог <i class="fas fa-arrow-right"></i></a>
+                        <a href="#about" class="btn btn-secondary" onclick="navigateToSection('about')">О нашей концепции</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Showcase of highlights / Featured -->
+            <div class="featured-section section-padding">
+                <div class="container">
+                    <div class="section-title-wrap">
+                        <span class="subtitle">Выбор недели</span>
+                        <h2>Книга, меняющая взгляд на мир</h2>
+                    </div>
+                    
+                    <div class="featured-book-card" id="featured-book-container">
+                        <!-- Filled by JS -->
+                        <div class="featured-skeleton">Загрузка эстетики...</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Value Proposition -->
+            <div class="values-section">
+                <div class="container">
+                    <div class="values-grid">
+                        <div class="value-card">
+                            <div class="value-icon"><i class="fas fa-compass"></i></div>
+                            <h3>Кураторский отбор</h3>
+                            <p>Мы не продаем книги стопками. Каждая книга отобрана лично нами за глубину мысли, ценность содержания и эстетику издания.</p>
+                        </div>
+                        <div class="value-card">
+                            <div class="value-icon"><i class="fas fa-leaf"></i></div>
+                            <h3>Вторая жизнь книг</h3>
+                            <p>Покупка качественной б/у литературы бережет природу. Мы дарим бумажным страницам новые дома, сохраняя леса.</p>
+                        </div>
+                        <div class="value-card">
+                            <div class="value-icon"><i class="fas fa-bookmark"></i></div>
+                            <h3>Редкие издания</h3>
+                            <p>У нас часто появляются редкие, коллекционные или снятые с печати тиражи, которые больше невозможно купить в обычных магазинах.</p>
+                        </div>
+                        <div class="value-card">
+                            <div class="value-icon"><i class="fas fa-users"></i></div>
+                            <h3>Книжный клуб</h3>
+                            <p>У нас есть теплое закрытое сообщество в WhatsApp «Парасат Парақтары», где мы обсуждаем прочитанное и делимся мыслями.</p>
+                        </div>
+                        <div class="value-card">
+                            <div class="value-icon"><i class="fas fa-mug-hot"></i></div>
+                            <h3>Чайный уголок</h3>
+                            <p>Наш магазин находится в тихом частном доме в Кызылорде. При самовывозе вы можете не спеша полистать книги за чашкой чая.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Instagram Feed Concept -->
+            <div class="instagram-feed-section section-padding">
+                <div class="container">
+                    <div class="section-title-wrap text-center">
+                        <span class="subtitle">Эстетика в деталях</span>
+                        <h2>Мы в Instagram <a href="https://instagram.com/bukinist.kzo" target="_blank" class="instagram-handle">@bukinist.kzo</a></h2>
+                        <p class="section-description">Подписывайтесь, чтобы первыми узнавать о новых поступлениях, читать рецензии и вдохновляться уютными кадрами.</p>
+                    </div>
+
+                    <div class="instagram-grid">
+                        <div class="instagram-post">
+                            <img src="assets/insta1.png" alt="Кофе и раскрытая книга">
+                            <div class="insta-overlay">
+                                <i class="fab fa-instagram"></i>
+                                <span>Перейти к посту</span>
+                            </div>
+                        </div>
+                        <div class="instagram-post">
+                            <img src="assets/insta2.png" alt="Уютный уголок для чтения">
+                            <div class="insta-overlay">
+                                <i class="fab fa-instagram"></i>
+                                <span>Перейти к посту</span>
+                            </div>
+                        </div>
+                        <div class="instagram-post">
+                            <img src="assets/insta3.png" alt="Корешки книг">
+                            <div class="insta-overlay">
+                                <i class="fab fa-instagram"></i>
+                                <span>Перейти к посту</span>
+                            </div>
+                        </div>
+                        <div class="instagram-post">
+                            <img src="assets/insta4.png" alt="Книга в теплом свитере">
+                            <div class="insta-overlay">
+                                <i class="fab fa-instagram"></i>
+                                <span>Перейти к посту</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Newsletter Box -->
+            <div class="newsletter-section">
+                <div class="container">
+                    <div class="newsletter-box">
+                        <h3>Клуб любителей книг «Парасат Парақтары»</h3>
+                        <p>Присоединяйтесь к нашему уютному сообществу в WhatsApp! Обсуждаем книги по политике, философии и искусству, делимся рецензиями и общаемся в кругу единомышленников.</p>
+                        <div style="display: flex; justify-content: center; margin-top: 24px;">
+                            <a href="https://wa.me/77057242157?text=%D0%9F%D1%80%D0%B8%D0%B2%D0%B5%D1%82!%20%D0%AF%20%D1%85%D0%BE%D1%87%D1%83%20%D0%B2%D1%81%D1%82%D1%83%D0%BF%D0%B8%D1%82%D1%8C%20%D0%B2%20%D0%BA%D0%BD%D0%B8%D0%B6%D0%BD%D1%8B%D0%B9%20%D0%BA%D0%BB%D1%83%D0%B1%20%C2%AB%D0%9F%D0%B0%D1%80%D0%B0%D1%81%D0%B0%D1%82%20%D0%9F%D0%B0%D1%80%D0%B0%D2%9B%D1%82%D0%B0%D1%80%D1%8B%C2%BB" target="_blank" class="btn btn-success">
+                                <i class="fab fa-whatsapp"></i> Вступить в клуб в WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CATALOG SECTION -->
+        <section id="catalog" class="view-section">
+            <div class="catalog-header">
+                <div class="container">
+                    <h1>Букинистический каталог bukinist.kzo</h1>
+                    <p>Избранные б/у книги по политике, философии, искусству и саморазвитию. Подарите качественной литературе вторую жизнь.</p>
+                </div>
+            </div>
+
+            <div class="container">
+                <!-- Toolbar with search, filters and sorting -->
+                <div class="catalog-toolbar">
+                    <div class="search-box">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" id="catalog-search" placeholder="Поиск книги, автора, ключевых слов...">
+                        <button id="clear-search-btn" class="clear-search-btn"><i class="fas fa-times"></i></button>
+                    </div>
+
+                    <div class="filter-sort-controls">
+                        <div class="filter-genre-tabs" id="genre-tabs">
+                            <button class="genre-tab active" data-genre="all">Все книги</button>
+                            <button class="genre-tab" data-genre="politics">Политика</button>
+                            <button class="genre-tab" data-genre="philosophy">Рассуждения и Философия</button>
+                            <button class="genre-tab" data-genre="art">Искусство</button>
+                            <button class="genre-tab" data-genre="development">Саморазвитие</button>
+                        </div>
+
+                        <div class="sort-selector-wrap">
+                            <label for="catalog-sort">Сортировка:</label>
+                            <select id="catalog-sort">
+                                <option value="default">По умолчанию</option>
+                                <option value="price-asc">Цена: по возрастанию</option>
+                                <option value="price-desc">Цена: по убыванию</option>
+                                <option value="title-asc">По названию (А-Я)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Active Filter Tags Display -->
+                <div class="active-filters-bar" id="active-filters-bar">
+                    <!-- Dynamic chips -->
+                </div>
+
+                <!-- Book Grid -->
+                <div class="book-grid" id="book-grid">
+                    <!-- Dynamically populated -->
+                    <div class="grid-placeholder">
+                        <div class="spinner"></div>
+                        <p>Ищем лучшие книги на полках...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section id="about" class="view-section">
+            <div class="container section-padding">
+                <div class="about-grid">
+                    <div class="about-image-wrap">
+                        <img src="assets/about.png" alt="Интерьер книжного магазина" class="about-main-img">
+                        <div class="about-image-badge">
+                            <span class="badge-num">100%</span>
+                            <span class="badge-text">Книжная эстетика</span>
+                        </div>
+                    </div>
+                    
+                    <div class="about-text-content">
+                        <span class="subtitle">О нашем проекте</span>
+                        <h1>Домашний книжный уголок bukinist.kzo</h1>
+                        <p><strong>bukinist.kzo</strong> — это не просто магазин, это уютное домашнее сообщество людей, объединенных любовью к глубокой литературе и эстетике бумажной книги. Мы появились из желания дать вторую жизнь хорошим б/у книгам по политике, искусству и философии, раскрывая их ценность и идеи новым читателям.</p>
+                        
+                        <p>Мы верим, что чтение б/у книг имеет особую романтику. Это возможность прикоснуться к чужой истории, ведь бумажная книга, бережно прочитанная кем-то ранее — это теплый артефакт. Наш уголок находится в частном доме в тихом жилом районе, вдали от городской суеты.</p>
+
+                        <h3>Наши принципы:</h3>
+                        <ul class="principles-list">
+                            <li><i class="fas fa-check-circle"></i> <strong>Смыслы важнее объемов:</strong> Мы отбираем только качественные б/у книги, которые оставляют след в душе и заставляют рассуждать.</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>Эстетика во всем:</strong> Приятная бумага, качественная печать, стильный дизайн обложек.</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>Экологичность общения:</strong> Мы ценим каждого покупателя и создаем душевный сервис, как для близких друзей.</li>
+                        </ul>
+
+                        <div class="about-insta-cta">
+                            <p>Мы ведем красивый блог в Instagram. Подписывайтесь на уютные фото и обзоры!</p>
+                            <a href="https://instagram.com/bukinist.kzo" target="_blank" class="btn btn-primary"><i class="fab fa-instagram"></i> bukinist.kzo в Instagram</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DELIVERY SECTION -->
+        <section id="delivery" class="view-section">
+            <div class="delivery-hero text-center">
+                <div class="container">
+                    <span class="subtitle">Забота в пути</span>
+                    <h1>Доставка и упаковка</h1>
+                    <p>Мы надежно упаковываем каждую б/у книгу в плотную защитную пленку или картон перед отправкой, чтобы защитить углы и обложку от повреждений при транспортировке.</p>
+                </div>
+            </div>
+
+            <div class="container section-padding">
+                <div class="delivery-options-grid">
+                    <!-- Courier -->
+                    <div class="delivery-option-card">
+                        <div class="option-header">
+                            <div class="option-icon"><i class="fas fa-motorcycle"></i></div>
+                            <h3>Курьерская доставка</h3>
+                        </div>
+                        <div class="option-body">
+                            <p class="option-price">Договорная</p>
+                            <p class="option-time"><i class="far fa-clock"></i> В день заказа или на следующий день</p>
+                            <p class="option-desc">Доступно по городу Кызылорда. Стоимость доставки зависит от вашего района — мы рассчитаем и предложим вам цену при подтверждении заказа.</p>
+                            <ul class="option-bullets">
+                                <li>Согласуем стоимость доставки индивидуально</li>
+                                <li>Предварительный звонок курьера перед выездом</li>
+                                <li>Бережная доставка прямо до вашей двери</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Post Office -->
+                    <div class="delivery-option-card highlighted">
+                        <div class="option-badge">Популярно</div>
+                        <div class="option-header">
+                            <div class="option-icon"><i class="fas fa-mail-bulk"></i></div>
+                            <h3>Казпочта / CDEK</h3>
+                        </div>
+                        <div class="option-body">
+                            <p class="option-price">от 1 200 ₸</p>
+                            <p class="option-time"><i class="far fa-clock"></i> 3–7 рабочих дней</p>
+                            <p class="option-desc">Отправка в любую точку Казахстана. Мы отправляем трек-номер для отслеживания сразу после передачи посылки в службу доставки.</p>
+                            <ul class="option-bullets">
+                                <li>Доставка в любое отделение Казпочты</li>
+                                <li>Отправка курьерской службой СДЭК до двери/склада</li>
+                                <li>Качественная воздушно-пузырьковая упаковка</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Pickup -->
+                    <div class="delivery-option-card">
+                        <div class="option-header">
+                            <div class="option-icon"><i class="fas fa-store"></i></div>
+                            <h3>Самовывоз</h3>
+                        </div>
+                        <div class="option-body">
+                            <p class="option-price">Бесплатно</p>
+                            <p class="option-time"><i class="far fa-clock"></i> Готов к выдаче через 1 час</p>
+                            <p class="option-desc">Вы можете забрать заказ самостоятельно из нашего домашнего книжного уголка. Мы находимся в тихом частном секторе (не центр).</p>
+                            <ul class="option-bullets">
+                                <li>Отложим б/у книгу на срок до 3-х дней</li>
+                                <li>Можно полистать другие книги из личной коллекции</li>
+                                <li>Выдача заказа в удобное для вас время</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CONTACTS SECTION -->
+        <section id="contacts" class="view-section">
+            <div class="container section-padding">
+                <div class="contacts-grid">
+                    <div class="contacts-info-column">
+                        <span class="subtitle">Связаться с нами</span>
+                        <h1>Будем рады встрече</h1>
+                        <p class="contacts-intro">Вы всегда можете написать нам в социальные сети, позвонить или заглянуть на чашку кофе и душевный разговор о книгах.</p>
+                        
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <div class="c-icon"><i class="fas fa-map-marker-alt"></i></div>
+                                <div class="c-text">
+                                    <h4>Где мы находимся</h4>
+                                    <p>Казахстан, г. Кызылорда, ул. Айтеке би, 42 (частный дом)<br><span class="details-sub">(Тихий жилой район, точный адрес сообщим при согласовании)</span></p>
+                                </div>
+                            </div>
+
+                            <div class="contact-item">
+                                <div class="c-icon"><i class="fas fa-clock"></i></div>
+                                <div class="c-text">
+                                    <h4>Часы работы</h4>
+                                    <p>Ежедневно: с 10:00 до 21:00<br><span class="details-sub">Без перерывов и выходных</span></p>
+                                </div>
+                            </div>
+
+                            <div class="contact-item">
+                                <div class="c-icon"><i class="fab fa-whatsapp"></i></div>
+                                <div class="c-text">
+                                    <h4>Телефон & WhatsApp</h4>
+                                    <p><a href="https://wa.me/77057242157" target="_blank">+7 (705) 724-21-57</a><br><span class="details-sub">Отвечаем на сообщения в течение 10 минут</span></p>
+                                </div>
+                            </div>
+
+                            <div class="contact-item">
+                                <div class="c-icon"><i class="fab fa-instagram"></i></div>
+                                <div class="c-text">
+                                    <h4>Instagram Direct</h4>
+                                    <p><a href="https://instagram.com/bukinist.kzo" target="_blank">@bukinist.kzo</a><br><span class="details-sub">Самый быстрый способ заказать книгу через соцсети</span></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Cozy Quote block -->
+                        <div class="cozy-quote-block">
+                            <p>«Политика открывает законы общества, философия — тайны разума, искусство дает нам форму, а развитие — силу действовать. Мы собрали этот пазл на наших полках.»</p>
+                            <span class="quote-author">— Клуб «Парасат Парақтары»</span>
+                        </div>
+                    </div>
+
+                    <div class="contacts-form-column">
+                        <div class="contact-card-form">
+                            <h3>Напишите нам</h3>
+                            <p>Задайте вопрос о наличии книги, посоветуйтесь по поводу выбора или оставьте отзыв.</p>
+                            
+                            <form id="contact-us-form">
+                                <div class="form-group">
+                                    <label for="c-name">Ваше имя</label>
+                                    <input type="text" id="c-name" placeholder="Как к вам обращаться?" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="c-contact">Ваш Instagram или Номер телефона</label>
+                                    <input type="text" id="c-contact" placeholder="@username или +7..." required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="c-message">Сообщение</label>
+                                    <textarea id="c-message" rows="5" placeholder="Какую книгу вы ищете или какой у вас вопрос?" required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-block">Отправить сообщение <i class="far fa-paper-plane"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Custom visual maps block -->
+                <div class="map-section-wrap">
+                    <h3>Как нас найти</h3>
+                    <div class="custom-map-container" id="custom-map">
+                        <div class="map-placeholder-content">
+                            <!-- Styled custom graphic map container, clean and minimalist -->
+                            <div class="map-card-cozy">
+                                <div class="map-dot-pulse"></div>
+                                <div class="map-card-info">
+                                    <h4>bukinist.kzo</h4>
+                                    <p>ул. Айтеке би, 42 (частный дом)</p>
+                                    <span class="map-badge"><i class="fas fa-home"></i> Домашний уголок</span>
+                                </div>
+                            </div>
+                            <div class="map-graphic-elements">
+                                <div class="map-road main-road">Айтеке Би</div>
+                                <div class="map-road cross-road">Конаева</div>
+                                <div class="map-landmark park" style="background-color: rgba(141, 110, 83, 0.15); border-color: rgba(141, 110, 83, 0.3); color: var(--text-dark);">Жилой квартал</div>
+                                <div class="map-landmark square" style="background-color: rgba(91, 112, 86, 0.15); border-color: rgba(91, 112, 86, 0.3); color: var(--accent-olive);">Тихий сквер</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ADMIN SECTION -->
+        <section id="admin" class="view-section">
+            <div class="admin-panel-container">
+                <!-- Login Screen -->
+                <div class="admin-login-wrap" id="admin-login-wrap">
+                    <div class="admin-login-card">
+                        <div class="login-icon"><i class="fas fa-lock"></i></div>
+                        <h2>Вход в панель управления</h2>
+                        <p>Введите пароль администратора для получения доступа к заказам и каталогу книг.</p>
+                        <form id="admin-login-form">
+                            <input type="password" id="admin-password-input" placeholder="Пароль" required>
+                            <button type="submit" class="btn btn-primary btn-block">Войти в панель</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Admin Dashboard (Hidden by default) -->
+                <div id="admin-dashboard-wrap" class="admin-layout" style="display: none;">
+                    <!-- Left Sidebar -->
+                    <aside class="admin-sidebar">
+                        <div class="admin-sidebar-brand">
+                            <span class="brand-logo"><span class="logo-accent">bukinist</span>.kzo</span>
+                            <span class="brand-badge">Admin Panel</span>
+                        </div>
+                        <div class="admin-sidebar-profile">
+                            <div class="profile-avatar"><i class="fas fa-user-shield"></i></div>
+                            <div class="profile-info">
+                                <strong>Администратор</strong>
+                                <span>bukinistkzo@gmail.com</span>
+                            </div>
+                        </div>
+                        <nav class="admin-sidebar-nav">
+                            <button class="admin-tab-btn active" data-tab="orders">
+                                <i class="fas fa-shopping-bag"></i> <span>Заказы</span>
+                            </button>
+                            <button class="admin-tab-btn" data-tab="books">
+                                <i class="fas fa-book-open"></i> <span>Управление каталогом</span>
+                            </button>
+                            <button class="admin-tab-btn" data-tab="stats">
+                                <i class="fas fa-chart-line"></i> <span>Статистика</span>
+                            </button>
+                            <button class="admin-tab-btn" data-tab="messages">
+                                <i class="fas fa-comments"></i> <span>Сообщения</span>
+                            </button>
+                        </nav>
+                        <div class="admin-sidebar-footer">
+                            <button class="admin-sidebar-btn back-site-btn" onclick="navigateToSection('home')">
+                                <i class="fas fa-arrow-left"></i> <span>На сайт</span>
+                            </button>
+                            <button class="admin-sidebar-btn logout-btn" id="admin-logout-btn">
+                                <i class="fas fa-sign-out-alt"></i> <span>Выйти</span>
+                            </button>
+                        </div>
+                    </aside>
+
+                    <!-- Right Main Content Panel -->
+                    <main class="admin-main-content">
+                        <!-- Tab 1: Orders -->
+                        <div class="admin-tab-content active" id="tab-orders">
+                            <div class="admin-section-header">
+                                <h2>Лог заказов</h2>
+                                <button class="btn btn-secondary btn-sm" id="admin-clear-orders-btn"><i class="far fa-trash-alt"></i> Очистить историю</button>
+                            </div>
+                            <div class="admin-orders-list" id="admin-orders-list">
+                                <!-- Populated by JS -->
+                                <div class="grid-placeholder">
+                                    <p>Заказов пока не поступало.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tab 2: Books Management -->
+                        <div class="admin-tab-content" id="tab-books">
+                            <div class="admin-books-layout">
+                                <!-- Left form: Add Book -->
+                                <div class="admin-card">
+                                    <h3>Добавить книгу</h3>
+                                    <form id="admin-add-book-form">
+                                        <div class="form-group">
+                                            <label for="a-title">Название книги</label>
+                                            <input type="text" id="a-title" required placeholder="Например: Государство">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="a-author">Автор</label>
+                                            <input type="text" id="a-author" required placeholder="Например: Платон">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="a-genre">Жанр (выберите или напишите свой)</label>
+                                            <input type="text" id="a-genre" required list="genres-list" placeholder="Например: Роман, Фантастика, Детектив">
+                                            <datalist id="genres-list">
+                                                <option value="politics">Политика</option>
+                                                <option value="philosophy">Рассуждения и Философия</option>
+                                                <option value="art">Искусство</option>
+                                                <option value="development">Саморазвитие</option>
+                                            </datalist>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="a-price">Цена (₸)</label>
+                                            <input type="number" id="a-price" required placeholder="Например: 4500">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="a-condition">Состояние книги</label>
+                                            <select id="a-condition" required>
+                                                <option value="Новое (б/у)">Новое (б/у)</option>
+                                                <option value="Отличное (б/у)">Отличное (б/у)</option>
+                                                <option value="Хорошее (б/у)">Хорошее (б/у)</option>
+                                                <option value="Удовлетворительное (б/у)">Удовлетворительное (б/у)</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="a-year">Год издания</label>
+                                            <input type="number" id="a-year" required placeholder="Например: 2022">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="a-pages">Количество страниц</label>
+                                            <input type="number" id="a-pages" required placeholder="Например: 448">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="a-binding">Переплет</label>
+                                            <input type="text" id="a-binding" required placeholder="Например: Твердый переплет">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="a-cover-style">Стиль обложки (градиент CSS)</label>
+                                            <select id="a-cover-style" required>
+                                                <option value="linear-gradient(135deg, #5b7056, #3f503c)">Olive Theme</option>
+                                                <option value="linear-gradient(135deg, #cc7852, #a65c3a)">Terracotta Theme</option>
+                                                <option value="linear-gradient(135deg, #2b3a4a, #1a242f)">Dark Blue Theme</option>
+                                                <option value="linear-gradient(135deg, #8c6a56, #6b4d3c)">Brown Theme</option>
+                                                <option value="linear-gradient(135deg, #e3dac9, #c2b59b)">Cream Theme</option>
+                                                <option value="linear-gradient(135deg, #6c5c77, #4b3e54)">Purple Theme</option>
+                                                <option value="linear-gradient(135deg, #cc9c3f, #aa7b25)">Gold Theme</option>
+                                                <option value="linear-gradient(135deg, #4a6b6c, #2f494a)">Teal Theme</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="a-cover-text-color">Цвет текста на обложке</label>
+                                            <select id="a-cover-text-color" required>
+                                                <option value="#fdfbf7">Светлый (Cozy White)</option>
+                                                <option value="#2c2520">Темный (Cozy Dark)</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="a-cover-url">Ссылка на фото обложки (URL)</label>
+                                            <input type="url" id="a-cover-url" placeholder="https://example.com/image.jpg (необязательно)">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="a-description">Краткое описание</label>
+                                            <textarea id="a-description" rows="3" required placeholder="Краткое описание для карточки книги..."></textarea>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary btn-block">Добавить книгу <i class="fas fa-plus"></i></button>
+                                    </form>
+                                </div>
+
+                                <!-- Right: Books Table -->
+                                <div class="admin-card">
+                                    <h3>Список книг</h3>
+                                    <div class="admin-table-wrap">
+                                        <table class="admin-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Книга</th>
+                                                    <th>Жанр</th>
+                                                    <th>Цена</th>
+                                                    <th>Состояние</th>
+                                                    <th>Действие</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="admin-books-table-body">
+                                                <!-- Populated by JS -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tab 3: Statistics -->
+                        <div class="admin-tab-content" id="tab-stats">
+                            <div class="admin-section-header">
+                                <h2>Статистика магазина</h2>
+                            </div>
+                            <div class="admin-stats-grid">
+                                <div class="stats-card">
+                                    <span class="stats-label">Всего книг в каталоге</span>
+                                    <span class="stats-val" id="stats-total-books">0</span>
+                                </div>
+                                <div class="stats-card">
+                                    <span class="stats-label">Всего заказов оформлено</span>
+                                    <span class="stats-val" id="stats-total-orders">0</span>
+                                </div>
+                                <div class="stats-card">
+                                    <span class="stats-label">Общая сумма заказов</span>
+                                    <span class="stats-val" id="stats-total-sales">0 ₸</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tab 4: Messages -->
+                        <div class="admin-tab-content" id="tab-messages">
+                            <div class="admin-section-header">
+                                <h2>Сообщения обратной связи</h2>
+                                <button class="btn btn-secondary btn-sm" id="admin-clear-messages-btn"><i class="far fa-trash-alt"></i> Очистить историю</button>
+                            </div>
+                            <div class="admin-messages-list" id="admin-messages-list">
+                                <!-- Populated by JS -->
+                                <div class="grid-placeholder">
+                                    <p>Сообщений пока не поступало.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </main>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand-col">
+                    <a href="#home" class="logo footer-logo" onclick="navigateToSection('home')"><span class="logo-accent">bukinist</span>.kzo</a>
+                    <p class="footer-tagline">Книги, меняющие сознание. Светлый уют в каждой странице.</p>
+                    <div class="footer-social-links">
+                        <a href="https://instagram.com/bukinist.kzo" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/77057242157" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-nav-col">
+                    <h4>Навигация</h4>
+                    <ul>
+                        <li><a href="#home" onclick="navigateToSection('home')">Главная</a></li>
+                        <li><a href="#catalog" onclick="navigateToSection('catalog')">Каталог книг</a></li>
+                        <li><a href="#about" onclick="navigateToSection('about')">О нас</a></li>
+                        <li><a href="#delivery" onclick="navigateToSection('delivery')">Доставка</a></li>
+                        <li><a href="#contacts" onclick="navigateToSection('contacts')">Контакты</a></li>
+                        <li><a href="#admin" onclick="navigateToSection('admin')"><i class="fas fa-lock" style="font-size: 0.8rem; margin-right: 4px;"></i> Панель управления</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-genres-col">
+                    <h4>Категории</h4>
+                    <ul>
+                        <li><a href="#catalog" onclick="selectGenreFilter('politics')">Политика</a></li>
+                        <li><a href="#catalog" onclick="selectGenreFilter('philosophy')">Рассуждения и Философия</a></li>
+                        <li><a href="#catalog" onclick="selectGenreFilter('art')">Искусство</a></li>
+                        <li><a href="#catalog" onclick="selectGenreFilter('development')">Саморазвитие</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-contacts-col">
+                    <h4>Адрес и Время</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> Кызылорда, Айтеке би, 42</p>
+                    <p><i class="far fa-clock"></i> Пн–Вс: 10:00 – 21:00</p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:bukinistkzo@gmail.com">bukinistkzo@gmail.com</a></p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 bukinist.kzo. Создано для уютного чтения и глубоких мыслей.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL: BOOK QUICK VIEW -->
+    <div class="modal-overlay" id="book-modal">
+        <div class="modal-container book-detail-modal">
+            <button class="modal-close-btn" id="close-book-modal-btn" aria-label="Закрыть"><i class="fas fa-times"></i></button>
+            <div class="modal-content-grid" id="book-modal-body">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: SHOPPING CART & CHECKOUT -->
+    <div class="modal-overlay" id="cart-modal">
+        <div class="modal-container cart-drawer-modal">
+            <button class="modal-close-btn" id="close-cart-modal-btn" aria-label="Закрыть"><i class="fas fa-times"></i></button>
+            
+            <div class="cart-modal-layout">
+                <!-- Cart Items Column -->
+                <div class="cart-items-column">
+                    <h2>Ваша корзина</h2>
+                    
+                    <div class="cart-items-list" id="cart-items-list">
+                        <!-- Dynamic items -->
+                        <div class="cart-empty-message">
+                            <i class="fas fa-shopping-basket"></i>
+                            <p>В корзине пока пусто. Загляните в каталог!</p>
+                            <a href="#catalog" class="btn btn-primary btn-sm" id="cart-back-to-catalog-btn">В каталог</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Checkout Form Column -->
+                <div class="cart-checkout-column" id="checkout-form-container">
+                    <h3>Оформление заказа</h3>
+                    <p class="checkout-sub">Заполните данные, и мы свяжемся с вами в WhatsApp/Instagram для подтверждения заказа и оплаты.</p>
+                    
+                    <form id="checkout-form">
+                        <div class="form-group">
+                            <label for="o-name">Ваше имя</label>
+                            <input type="text" id="o-name" placeholder="Имя Фамилия" required disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="o-phone">Номер телефона (WhatsApp)</label>
+                            <input type="tel" id="o-phone" placeholder="+7 (700) 123-45-67" required disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="o-social">Ваш аккаунт Instagram (необязательно)</label>
+                            <input type="text" id="o-social" placeholder="@username" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="o-delivery-select">Способ доставки</label>
+                            <select id="o-delivery-select" required disabled>
+                                <option value="pickup">Самовывоз (Кызылорда, ул. Айтеке би, 42, частный дом) — Бесплатно</option>
+                                <option value="courier">Курьер до двери (Кызылорда) — цена зависит от района</option>
+                                <option value="post">Казпочта / CDEK (по Казахстану) — от 1 200 ₸</option>
+                            </select>
+                        </div>
+                        <div class="form-group" id="o-address-group" style="display: none;">
+                            <label for="o-address">Адрес доставки</label>
+                            <input type="text" id="o-address" placeholder="Город, улица, дом, квартира">
+                        </div>
+
+                        <!-- Order Summary Card -->
+                        <div class="checkout-summary-card">
+                            <div class="summary-line">
+                                <span>Товары:</span>
+                                <span id="summary-items-price">0 ₸</span>
+                            </div>
+                            <div class="summary-line">
+                                <span>Доставка:</span>
+                                <span id="summary-delivery-price">0 ₸</span>
+                            </div>
+                            <hr class="summary-separator">
+                            <div class="summary-line total">
+                                <span>Итого к оплате:</span>
+                                <span id="summary-total-price">0 ₸</span>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block" id="submit-order-btn" disabled>
+                            Оформить заказ в WhatsApp <i class="fab fa-whatsapp"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: ORDER SUCCESS -->
+    <div class="modal-overlay" id="success-modal">
+        <div class="modal-container success-popup-modal text-center">
+            <button class="modal-close-btn" id="close-success-btn" aria-label="Закрыть"><i class="fas fa-times"></i></button>
+            <div class="success-icon-wrap">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2>Заказ успешно сформирован!</h2>
+            <p class="success-order-id">Номер вашего заказа: <strong id="success-order-num">#04062</strong></p>
+            <div class="success-message-box">
+                <p>Мы подготовили текст вашего заказа. Нажмите кнопку ниже, чтобы отправить его нам в WhatsApp для подтверждения оплаты и доставки.</p>
+                <div class="whatsapp-redirect-card">
+                    <p class="whatsapp-text-preview" id="whatsapp-text-preview">Привет, bukinist.kzo! Я хочу заказать книги...</p>
+                    <a href="#" target="_blank" class="btn btn-success btn-block" id="send-whatsapp-link">
+                        <i class="fab fa-whatsapp"></i> Отправить в WhatsApp
+                    </a>
+                </div>
+            </div>
+            <button class="btn btn-secondary" id="success-close-btn">Вернуться на главную</button>
+        </div>
+    </div>
+
+    <!-- Floating Cozy Sound Player -->
+    <div class="cozy-ambient-player" id="cozy-audio-player">
+        <button class="cozy-player-toggle" id="cozy-player-toggle" title="Атмосфера уюта для чтения">
+            <i class="fas fa-music"></i>
+            <span class="cozy-pulse-dot"></span>
+        </button>
+        <div class="cozy-player-panel" id="cozy-player-panel">
+            <div class="cozy-player-header">
+                <h4><i class="fas fa-feather-alt"></i> Атмосфера уюта</h4>
+                <button class="cozy-player-close" id="cozy-player-close" aria-label="Скрыть"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="cozy-player-body">
+                <div class="cozy-sound-selectors">
+                    <button class="cozy-sound-btn active" data-sound="rain" title="Процедурный шум дождя"><i class="fas fa-cloud-showers-heavy"></i> Шум дождя</button>
+                    <button class="cozy-sound-btn" data-sound="fireplace" title="Звуки горящего камина"><i class="fas fa-fire"></i> Камин</button>
+                    <button class="cozy-sound-btn" data-sound="lofi" title="Cozy Lo-Fi Радио"><i class="fas fa-headphones"></i> Lo-Fi радио</button>
+                </div>
+                <div class="cozy-player-controls">
+                    <button class="cozy-play-action" id="cozy-play-btn"><i class="fas fa-play"></i> Слушать</button>
+                    <div class="cozy-volume-control">
+                        <i class="fas fa-volume-down" id="cozy-volume-icon"></i>
+                        <input type="range" id="cozy-volume-slider" min="0" max="100" value="50">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Alert Toast System -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
