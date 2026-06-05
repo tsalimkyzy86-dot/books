@@ -176,31 +176,221 @@ let BOOKS_DATABASE = [
     }
 ];
 
-// Initialize books from backend database
+// --- AUTO-DETECT BACKEND / STATIC WORKAROUND FOR VERCEL ---
+const ORIGINAL_FETCH = window.fetch;
+let IS_BACKEND_AVAILABLE = null;
+
+// Initialize local data helper
+function initLocalStorageData() {
+    if (!localStorage.getItem('bukinist_books')) {
+        localStorage.setItem('bukinist_books', JSON.stringify(BOOKS_DATABASE));
+    }
+    if (!localStorage.getItem('bukinist_orders')) {
+        localStorage.setItem('bukinist_orders', JSON.stringify([]));
+    }
+    if (!localStorage.getItem('bukinist_messages')) {
+        localStorage.setItem('bukinist_messages', JSON.stringify([]));
+    }
+}
+initLocalStorageData();
+
+// Helper to simulate fetch response
+function mockResponse(data, status = 200, statusText = 'OK') {
+    return {
+        ok: status >= 200 && status < 300,
+        status: status,
+        statusText: statusText,
+        headers: new Headers({ 'Content-Type': 'application/json' }),
+        json: async () => data,
+        text: async () => JSON.stringify(data)
+    };
+}
+
+// Override global fetch
+window.fetch = async function(resource, options) {
+    const url = typeof resource === 'string' ? resource : resource.url;
+    
+    // Only intercept requests to /api/
+    if (url.startsWith('/api/')) {
+        // If we know backend is not available, bypass network completely to avoid delay and console errors
+        if (IS_BACKEND_AVAILABLE === false) {
+            return handleMockRequest(url, options);
+        }
+        
+        try {
+            const response = await ORIGINAL_FETCH(resource, options);
+            const contentType = response.headers.get('content-type') || '';
+            
+            // If response is HTML (Vercel rewrite redirection) or not ok
+            if (response.status === 404 || contentType.includes('text/html')) {
+                console.warn('Backend returned HTML or 404. Switching to local mockup mode (Vercel static).');
+                IS_BACKEND_AVAILABLE = false;
+                return handleMockRequest(url, options);
+            }
+            
+            IS_BACKEND_AVAILABLE = true;
+            return response;
+        } catch (e) {
+            console.warn('Backend network error. Switching to local mockup mode (Vercel static).', e);
+            IS_BACKEND_AVAILABLE = false;
+            return handleMockRequest(url, options);
+        }
+    }
+    
+    return ORIGINAL_FETCH(resource, options);
+};
+
+// Handle intercepted /api/ requests locally
+function handleMockRequest(url, options) {
+    const method = (options && options.method || 'GET').toUpperCase();
+    
+    // Parse URL relative to current location
+    let parsedUrl;
+    try {
+        parsedUrl = new URL(url, window.location.origin);
+    } catch(err) {
+        parsedUrl = new URL(url);
+    }
+    const path = parsedUrl.pathname;
+    
+    // Route mapping
+    if (path === '/api/books') {
+        let books = JSON.parse(localStorage.getItem('bukinist_books') || '[]');
+        if (method === 'GET') {
+            const bookId = parsedUrl.searchParams.get('id');
+            if (bookId) {
+                const book = books.find(b => b.id === bookId);
+                return mockResponse(book || null, book ? 200 : 404, book ? 'OK' : 'Not Found');
+            }
+            return mockResponse(books);
+        }
+        if (method === 'POST') {
+            const newBook = JSON.parse(options.body);
+            books.push(newBook);
+            localStorage.setItem('bukinist_books', JSON.stringify(books));
+            BOOKS_DATABASE = books;
+            return mockResponse({ success: true, book: newBook }, 201, 'Created');
+        }
+        if (method === 'DELETE') {
+            const bookId = parsedUrl.searchParams.get('id');
+            books = books.filter(b => b.id !== bookId);
+            localStorage.setItem('bukinist_books', JSON.stringify(books));
+            BOOKS_DATABASE = books;
+            return mockResponse({ success: true });
+        }
+    }
+    
+    if (path === '/api/orders') {
+        let orders = JSON.parse(localStorage.getItem('bukinist_orders') || '[]');
+        if (method === 'GET') {
+            const orderId = parsedUrl.searchParams.get('id');
+            if (orderId) {
+                const order = orders.find(o => o.id === orderId);
+                return mockResponse(order || null, order ? 200 : 404, order ? 'OK' : 'Not Found');
+            }
+            return mockResponse(orders);
+        }
+        if (method === 'POST') {
+            const newOrder = JSON.parse(options.body);
+            if (!newOrder.id) {
+                newOrder.id = '#' + Math.floor(1000 + Math.random() * 9000);
+            }
+            if (!newOrder.date) {
+                newOrder.date = new Date().toLocaleString('ru-RU');
+            }
+            orders.unshift(newOrder);
+            localStorage.setItem('bukinist_orders', JSON.stringify(orders));
+            return mockResponse({ success: true, order: newOrder }, 201, 'Created');
+        }
+        if (method === 'DELETE') {
+            const orderId = parsedUrl.searchParams.get('id');
+            if (orderId) {
+                orders = orders.filter(o => o.id !== orderId);
+            } else {
+                orders = [];
+            }
+            localStorage.setItem('bukinist_orders', JSON.stringify(orders));
+            return mockResponse({ success: true });
+        }
+    }
+    
+    if (path.startsWith('/api/orders/') && path.endsWith('/status')) {
+        const parts = path.split('/');
+        const orderId = parts[3];
+        if (method === 'PUT') {
+            const body = JSON.parse(options.body);
+            let orders = JSON.parse(localStorage.getItem('bukinist_orders') || '[]');
+            let found = false;
+            orders = orders.map(o => {
+                const cleanId = orderId.replace('#', '');
+                const cleanOId = o.id.replace('#', '');
+                if (cleanOId === cleanId) {
+                    o.status = body.status;
+                    found = true;
+                }
+                return o;
+            });
+            localStorage.setItem('bukinist_orders', JSON.stringify(orders));
+            return mockResponse({ success: found }, found ? 200 : 404, found ? 'OK' : 'Not Found');
+        }
+    }
+    
+    if (path === '/api/messages') {
+        let messages = JSON.parse(localStorage.getItem('bukinist_messages') || '[]');
+        if (method === 'GET') {
+            return mockResponse(messages);
+        }
+        if (method === 'POST') {
+            const newMsg = JSON.parse(options.body);
+            if (!newMsg.id) {
+                newMsg.id = Date.now();
+            }
+            if (!newMsg.date) {
+                newMsg.date = new Date().toLocaleString('ru-RU');
+            }
+            messages.unshift(newMsg);
+            localStorage.setItem('bukinist_messages', JSON.stringify(messages));
+            return mockResponse({ success: true, message: newMsg }, 201, 'Created');
+        }
+        if (method === 'DELETE') {
+            const msgId = parsedUrl.searchParams.get('id');
+            if (msgId) {
+                messages = messages.filter(m => String(m.id) !== String(msgId));
+            } else {
+                messages = [];
+            }
+            localStorage.setItem('bukinist_messages', JSON.stringify(messages));
+            return mockResponse({ success: true });
+        }
+    }
+    
+    return mockResponse({ error: 'Endpoint not simulated' }, 404, 'Not Found');
+}
+
+// Initialize books from backend database (or local fallback)
 async function loadBooksDatabase() {
     try {
         const response = await fetch('/api/books');
         if (response.ok) {
             BOOKS_DATABASE = await response.json();
-            
-            // Re-render genre tabs and autocomplete choices
-            renderGenreTabs();
-            populateGenresDatalist();
-            
-            // Render views that depend on books list
-            renderFeaturedBook();
-            renderCatalog();
-                        // If admin dashboard is active and visible, refresh it
-            const dashboardWrap = document.getElementById('admin-dashboard-wrap');
-            if (dashboardWrap && (dashboardWrap.style.display === 'flex' || dashboardWrap.style.display === 'block')) {
-                renderAdminBooks();
-                updateAdminStats();
-            }
         } else {
-            console.error('Failed to load books from backend');
+            console.warn('Failed to load books from backend. Defaulting to local data.');
         }
     } catch (e) {
         console.error('Error loading books database from API', e);
+    }
+    
+    // Always render UI views, even if API requests failed
+    renderGenreTabs();
+    populateGenresDatalist();
+    renderFeaturedBook();
+    renderCatalog();
+    
+    // Refresh admin dashboard if it is visible
+    const dashboardWrap = document.getElementById('admin-dashboard-wrap');
+    if (dashboardWrap && (dashboardWrap.style.display === 'flex' || dashboardWrap.style.display === 'block')) {
+        renderAdminBooks();
+        updateAdminStats();
     }
 }
 
