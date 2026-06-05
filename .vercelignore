@@ -1,0 +1,5 @@
+.git-portable/
+bukinist.db
+server_local.py
+check.py
+check_result.txt
