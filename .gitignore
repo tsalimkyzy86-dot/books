@@ -10,6 +10,7 @@ bukinist.db
 # Local dev utilities
 check.py
 check_result.txt
+requirements.txt
 
 # Python cache
 __pycache__/
