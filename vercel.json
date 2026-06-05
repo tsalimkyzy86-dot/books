@@ -1,12 +1,6 @@
 {
   "version": 2,
-  "buildCommand": "",
-  "outputDirectory": ".",
-  "cleanUrls": false,
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
-    }
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
