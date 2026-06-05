@@ -1,2 +1,16 @@
+# Local backend server (not needed on Vercel)
+server_local.py
+
+# Local SQLite database (not persistent on Vercel)
+bukinist.db
+
+# Portable Git (downloaded locally)
 .git-portable/
+
+# Local dev utilities
+check.py
 check_result.txt
+
+# Python cache
+__pycache__/
+*.pyc

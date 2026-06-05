@@ -1,9 +1,12 @@
 {
   "version": 2,
-  "cleanUrls": true,
+  "buildCommand": "",
+  "outputDirectory": ".",
+  "cleanUrls": false,
   "routes": [
-    { "handle": "filesystem" },
-    { "src": "/api/(.*)", "dest": "http://your-backend-server.com/api/$1" },
-    { "src": "/(.*)", "dest": "/index.html" }
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
   ]
 }
