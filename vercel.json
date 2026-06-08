@@ -1,7 +1,17 @@
 {
   "version": 2,
-  "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/index.py" }
+  "builds": [
+    { "src": "api/index.py", "use": "@vercel/python" },
+    { "src": "assets/**", "use": "@vercel/static" },
+    { "src": "styles.css", "use": "@vercel/static" },
+    { "src": "app.js", "use": "@vercel/static" },
+    { "src": "index.html", "use": "@vercel/static" }
+  ],
+  "routes": [
+    { "src": "/api/(.*)", "dest": "/api/index.py" },
+    { "src": "/assets/(.*)", "dest": "/assets/$1" },
+    { "src": "/styles.css", "dest": "/styles.css" },
+    { "src": "/app.js", "dest": "/app.js" },
+    { "src": "/(.*)", "dest": "/index.html" }
   ]
 }
-
