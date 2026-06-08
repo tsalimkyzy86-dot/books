@@ -167,7 +167,7 @@ def init_db():
                 "title": "Искусство видеть",
                 "author": "Джон Бёрджер",
                 "genre": "art",
-                "price: 4100",
+                "price": 4100,
                 "rating": 4.7,
                 "ratingCount": 45,
                 "pages": 184,
